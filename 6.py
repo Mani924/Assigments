@@ -72,3 +72,62 @@ fsGroupRange := {"min": 100, "max": 200}
   # Assume container to be exempt
   not is_exempt(input.review.object.spec.containers[0])
 }
+
+
+
+
+constraint = {
+    "apiVersion": "constraints.gatekeeper.sh/v1beta1",
+    "kind": "K8sPSPAllowedUsers",
+    "metadata": {
+        "name": "psp-pods-allowed-user-ranges"
+    },
+    "spec": {
+        "match": {
+            "kinds": [
+                {
+                    "apiGroups": [""],
+                    "kinds": ["Pod"]
+                }
+            ]
+        },
+        "parameters": {
+            "runAsUser": {
+                "rule": "MustRunAs",
+                "ranges": [
+                    {
+                        "min": 100,
+                        "max": 200
+                    }
+                ]
+            },
+            "runAsGroup": {
+                "rule": "MustRunAs",
+                "ranges": [
+                    {
+                        "min": 100,
+                        "max": 200
+                    }
+                ]
+            },
+            "supplementalGroups": {
+                "rule": "MustRunAs",
+                "ranges": [
+                    {
+                        "min": 100,
+                        "max": 200
+                    }
+                ]
+            },
+            "fsGroup": {
+                "rule": "MustRunAs",
+                "ranges": [
+                    {
+                        "min": 100,
+                        "max": 200
+                    }
+                ]
+            }
+        }
+    }
+}
