@@ -63,7 +63,12 @@ test_is_exempt {
       }
     }
   }
-  
+
+
+runAsUserRange := {"min": 100, "max": 200}
+runAsGroupRange := {"min": 100, "max": 200}
+supplementalGroupsRange := {"min": 100, "max": 200}
+fsGroupRange := {"min": 100, "max": 200}
   # Assume container to be exempt
   not is_exempt(input.review.object.spec.containers[0])
 }
