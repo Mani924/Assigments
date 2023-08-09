@@ -1,1 +1,275 @@
-n
+{
+  "@type": "type.googleapis.com/types.AdmissionControllerHookResult",
+  "admissionReview": {
+    "TypeMeta": {
+      "apiVersion": "admission.k8s.io/v1",
+      "kind": "AdmissionReview"
+    },
+    "request": {
+      "dryRun": false,
+      "kind": {
+        "group": "",
+        "kind": "Pod",
+        "version": "v1"
+      },
+      "name": "mani-test-users-disallowed",
+      "namespace": "mani-test",
+      "object": {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "creationTimestamp": "2023-08-02T13:27:50.0000000Z",
+          "labels": {
+            "app": "mani-test-users"
+          },
+          "managedFields": [
+            {
+              "apiVersion": "v1",
+              "fieldsType": "FieldsV1",
+              "fieldsV1": {
+                "f:metadata": {
+                  "f:labels": {
+                    ".": {},
+                    "f:app": {}
+                  }
+                },
+                "f:spec": {
+                  "f:containers": {
+                    "k:{\"name\":\"nginx\"}": {
+                      ".": {},
+                      "f:image": {},
+                      "f:imagePullPolicy": {},
+                      "f:name": {},
+                      "f:resources": {},
+                      "f:securityContext": {
+                        ".": {},
+                        "f:runAsGroup": {},
+                        "f:runAsUser": {}
+                      },
+                      "f:terminationMessagePath": {},
+                      "f:terminationMessagePolicy": {}
+                    }
+                  },
+                  "f:dnsPolicy": {},
+                  "f:enableServiceLinks": {},
+                  "f:restartPolicy": {},
+                  "f:schedulerName": {},
+                  "f:securityContext": {
+                    ".": {},
+                    "f:fsGroup": {},
+                    "f:supplementalGroups": {}
+                  },
+                  "f:terminationGracePeriodSeconds": {}
+                }
+              },
+              "manager": "kubectl-create",
+              "operation": "Update",
+              "time": "2023-08-02T13:27:50.0000000Z"
+            }
+          ],
+          "name": "mani-test-users-disallowed",
+          "namespace": "mani-test",
+          "uid": "950bc088-28e9-4a06-bec9-adff284de512"
+        },
+        "spec": {
+          "containers": [
+            {
+              "image": "nginx",
+              "imagePullPolicy": "Always",
+              "name": "nginx",
+              "resources": {},
+              "securityContext": {
+                "runAsGroup": 250,
+                "runAsUser": 250
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                  "name": "kube-api-access-j92pn",
+                  "readOnly": true
+                }
+              ]
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "fsGroup": 250,
+            "supplementalGroups": [
+              250
+            ]
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "---REDACTED---",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "---REDACTED---",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "volumes": [
+            {
+              "name": "kube-api-access-j92pn",
+              "projected": {
+                "defaultMode": 420,
+                "sources": [
+                  {
+                    "serviceAccountToken": {
+                      "expirationSeconds": 3607,
+                      "path": "token"
+                    }
+                  },
+                  {
+                    "configMap": {
+                      "items": [
+                        {
+                          "key": "---REDACTED---",
+                          "path": "---REDACTED---"
+                        }
+                      ],
+                      "name": "kube-root----REDACTED---"
+                    }
+                  },
+                  {
+                    "downwardAPI": {
+                      "items": [
+                        {
+                          "fieldRef": {
+                            "apiVersion": "v1",
+                            "fieldPath": "metadata.namespace"
+                          },
+                          "path": "namespace"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "status": {
+          "phase": "Pending",
+          "qosClass": "BestEffort"
+        }
+      },
+      "oldObject": null,
+      "operation": "CREATE",
+      "options": {
+        "apiVersion": "meta.k8s.io/v1",
+        "fieldManager": "kubectl-create",
+        "fieldValidation": "Strict",
+        "kind": "CreateOptions"
+      },
+      "requestKind": {
+        "group": "",
+        "kind": "Pod",
+        "version": "v1"
+      },
+      "requestResource": {
+        "group": "",
+        "resource": "pods",
+        "version": "v1"
+      },
+      "requestSubResource": "",
+      "resource": {
+        "group": "",
+        "resource": "pods",
+        "version": "v1"
+      },
+      "subResource": "",
+      "uid": "b1e0fc95-73bd-4afa-83c1-8bc64e9a7c35",
+      "userInfo": {
+        "groups": [
+          "system:masters",
+          "system:authenticated"
+        ],
+        "uid": "",
+        "username": "masterclient"
+      }
+    },
+    "response": {
+      "allowed": true,
+      "uid": ""
+    }
+  },
+  "agentId": "78d92e97-7749-58a4-b5d2-9569b508bffe",
+  "allowed": false,
+  "clusterExternalId": "932f641f02a1ecf3d52bd64b37fd3498894a5914ec910505b067b1c3a0a645e3",
+  "enforcement": "AUDIT",
+  "error": "",
+  "hookType": "OPA",
+  "id": "b1e0fc95-73bd-4afa-83c1-8bc64e9a7c35",
+  "latency": "0.011328530s",
+  "opa": {
+    "policies": [
+      "0d2d42d5-b01c-47df-9c25-23dab3183de0"
+    ],
+    "rulesMatchesPolicyIds": {
+      "162d7a77-4bf5-4005-9eb0-73421aea8ac2": {
+        "failedIds": [
+          "0d2d42d5-b01c-47df-9c25-23dab3183de0"
+        ],
+        "ids": [],
+        "passedIds": []
+      },
+      "69be4f4c-7d6b-4b86-b9d5-a4a11edb6601": {
+        "failedIds": [],
+        "ids": [],
+        "passedIds": [
+          "0d2d42d5-b01c-47df-9c25-23dab3183de0"
+        ]
+      },
+      "a8839460-ad18-44e1-9f1e-3189befd62b2": {
+        "failedIds": [],
+        "ids": [],
+        "passedIds": [
+          "0d2d42d5-b01c-47df-9c25-23dab3183de0"
+        ]
+      },
+      "ba1d6ca8-dea1-40d2-985b-2b3c121c7da6": {
+        "failedIds": [
+          "0d2d42d5-b01c-47df-9c25-23dab3183de0"
+        ],
+        "ids": [],
+        "passedIds": []
+      },
+      "e7414a1e-29e9-45ff-932b-d31476e81443": {
+        "failedIds": [],
+        "ids": [],
+        "passedIds": [
+          "0d2d42d5-b01c-47df-9c25-23dab3183de0"
+        ]
+      },
+      "feef851c-ce51-45ed-a7b0-c86dc474e919": {
+        "failedIds": [
+          "0d2d42d5-b01c-47df-9c25-23dab3183de0"
+        ],
+        "ids": [],
+        "passedIds": []
+      }
+    },
+    "rulesStatistics": {
+      "2": 2,
+      "3": 1,
+      "4": 3
+    }
+  },
+  "returnMessage": "",
+  "runAt": "2023-08-02T13:27:51.0020353Z"
+}
